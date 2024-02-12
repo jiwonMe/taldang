@@ -1,8 +1,12 @@
+from ftplib import FTP
 from fastapi import FastAPI, Body
 from typing import Optional
 from pdf2image import convert_from_path
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
+from app.config import BAROBILL_FTP_HOST, BAROBILL_FTP_PASSWORD, BAROBILL_FTP_USER
+
+from app.util.utils import sendFax, upload_file_to_ftp
 
 app = FastAPI()
 
@@ -29,6 +33,12 @@ def annotate_pdf(
         dpi=150,
     )
 
+    # upload image to ftp
+    ftp = FTP()
+    ftp.connect(host=BAROBILL_FTP_HOST, port=9031)
+    ftp.set_pasv(True)
+    ftp.login(user=BAROBILL_FTP_USER, passwd=BAROBILL_FTP_PASSWORD)
+
     for i in range(len(images)):
         # convert pdf to image
         image = images[i]
@@ -52,8 +62,18 @@ def annotate_pdf(
         # name
         draw.text((575, 1116), f'{name}', fill='black', font=font)
 
-
         # save image
-        image.save(f'output_image{i}.png')
+        image_path = f'./dist/output_image{i}.png'
+        image.save(image_path)
 
-    return {"message": "PDF에 텍스트가 추가되었습니다."}
+        upload_file_to_ftp(file=image_path, ftp=ftp, remote_path=f'output_image.png')
+
+    sendKey = sendFax(fileName='output_image.png')
+
+    # close ftp
+    ftp.quit()
+
+    return {
+        "message": "PDF에 텍스트가 추가되었습니다.",
+        "sendKey": sendKey,
+    }
