@@ -6,6 +6,8 @@ import styled, { css } from "styled-components";
 import Logo from "@/assets/taldang-logo.svg";
 import TaldangDocument from "@/assets/document.png";
 import VSpace from "@/components/VSpace";
+import FakeLoadingBar from "@/components/FakeLoadingBar";
+import Button from "@/components/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,12 +60,24 @@ export default function Home() {
               />
               <p>지금 떠나자, 탈당</p>
             </LogoWithSlogan>
+            <VSpace height={250} />
+            {/* <FakeLoadingBar duration={3} /> */}
+            <CTAButton>탈당하기</CTAButton>
           </Content>
         </LimitedView>
       </main>
     </>
   );
 }
+
+const CTAButton = styled(Button)`
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-width: 300px;
+`;
 
 // View 컴포넌트를 확장하여 최대 너비를 설정합니다.
 const LimitedView = styled(View)`
@@ -97,7 +111,10 @@ const Background = styled.div`
 
 const Content = styled.div`
   position: relative;
+
+  width: 100%;
   z-index: 1;
+  flex-grow: 1;
 `;
 
 const ImageAnimation = styled(Image)`
