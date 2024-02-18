@@ -19,7 +19,7 @@ export default function Home() {
       exit={{ opacity: 0 }}
       transition={{
         type: "keyframes",
-        duration: 0.5,
+        duration: 0.2,
         ease: "easeInOut",
       }}  
     >
@@ -68,7 +68,6 @@ export default function Home() {
         </motion.div>
       </Background>
       <Content>
-        <VSpace height={250} />
         <LogoWithSlogan>
           <Image
             src={Logo}
@@ -76,15 +75,16 @@ export default function Home() {
             width={230}
             height={32}
           />
-          <p>지금 떠나자, 탈당</p>
+          <p>당적을 포기할 권리: 탈당</p>
         </LogoWithSlogan>
-        <VSpace height={250} />
-        {/* <FakeLoadingBar duration={3} /> */}
         <Link
           href={"/intro"}
         >
           <CTAButton>탈당하기</CTAButton>
         </Link>
+        <NoticeDescription>
+          본 서비스는 특정 정당으로부터 독립적인 프로젝트입니다.
+        </NoticeDescription>
       </Content>
     </Animation>
   );
@@ -98,6 +98,19 @@ Home.getLayout = function getLayout(page: React.ReactNode) {
   );
 }
 
+const NoticeDescription = styled.p`
+  position: absolute;
+  bottom: 40px;
+  left: 36px;
+
+  text-align: left;
+
+  font-size: 12px;
+  color: #acacac;
+
+  font-weight: 500;
+`;
+
 const Animation = styled(motion.div)`
   height: 100%;
   width: 100%;
@@ -110,10 +123,16 @@ const CTAButton = styled(Button)`
   left: 50%;
   transform: translateX(-50%);
 
-  max-width: 300px;
+  max-width: calc(100% - 72px);
 `;
 
 const LogoWithSlogan = styled.div`
+  position: absolute;
+
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
   flex-direction: column;
   align-items: center;
