@@ -2,14 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import View from "@/components/View";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Logo from "@/assets/taldang-logo.svg";
 import TaldangDocument from "@/assets/document.png";
 import VSpace from "@/components/VSpace";
-import FakeLoadingBar from "@/components/FakeLoadingBar";
 import Button from "@/components/Button";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -20,7 +17,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${inter.className}`}>
+      <main>
         <div className="foreground" />
         <LimitedView>
           <Background>
@@ -101,7 +98,7 @@ const LogoWithSlogan = styled.div`
 
 const Background = styled.div`
   position: absolute;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
 
   z-index: 0;

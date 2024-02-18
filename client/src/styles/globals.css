@@ -8,7 +8,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #353535;
+  background-color: #E9E9E9;
 }
 
 a {
@@ -25,7 +25,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   z-index: 100000;
 
   user-select: none;
