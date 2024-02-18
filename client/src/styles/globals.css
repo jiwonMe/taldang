@@ -1,3 +1,7 @@
+/* prertendard */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -13,6 +17,8 @@ body {
   /* disable iOS select */
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 a {
