@@ -1,4 +1,5 @@
-import Document, { DocumentContext } from "next/document";
+import Layout from "@/components/Layout";
+import Document, { DocumentContext, Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from 'styled-components';
 
 // export default function Document() {
@@ -39,5 +40,17 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html lang="en">
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
