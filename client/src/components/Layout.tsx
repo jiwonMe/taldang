@@ -6,6 +6,7 @@ import getPartyColor from "@/utils/getPartyColor";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,6 +15,11 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { selectedParty, setSelectedParty} = useStore();
   const router = useRouter();
+
+  const navigateToMain = useCallback(() => {
+    setSelectedParty("");
+    router.push("/");
+  }, [setSelectedParty, router])
   
   return (
     <>
@@ -31,13 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </span>
 
               <a
-                onClick={() => {
-                  // 중단하시겠습니까?
-                  if(window.confirm("탈당을 중단하고 메인 화면으로 돌아갑니다")) {
-                    setSelectedParty("");
-                    router.push("/");
-                  }
-                }}
+                onClick={navigateToMain}
               >
                 중단하기
               </a>

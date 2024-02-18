@@ -79,8 +79,7 @@ export default function Select() {
         </SelectChipContainer>
 
         <Link
-          href="/select/confirm"
-          passHref
+          href="/cert"
         >
           <CTAButton
             disabled={!selectedParty}
