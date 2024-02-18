@@ -8,11 +8,31 @@ import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 
+import Party001 from "@/assets/party_001.png";
+import Party002 from "@/assets/party_002.png";
+import Party003 from "@/assets/party_003.png";
+import Party004 from "@/assets/party_004.png";
+
+import Image from "next/image";
+import { useStore } from "@/store";
+
 export default function Select() {
-  const [selected, setSelected] = useState<string[]>([]);
+  const {
+    selectedParty,
+    setSelectedParty,
+  } = useStore();
 
   return (
-    <Animation>
+    <Animation
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        type: "keyframes",
+        duration: 0.2,
+        ease: "easeInOut",
+      }}
+    >
       <Content>
         <PageTitle
           title="떠나고 싶은 정당을 선택해주세요"
@@ -20,22 +40,52 @@ export default function Select() {
         />
 
         <SelectChipContainer
-          value={selected}
-          onChange={setSelected}
+          value={[selectedParty]}
+          onChange={(value) => setSelectedParty(value[0])}
           multi={false}
         >
-          <SelectChip value="001">더불어민주당</SelectChip>
-          <SelectChip value="002">국민의힘</SelectChip>
-          <SelectChip value="003">개혁신당</SelectChip>
-          <SelectChip value="004">녹색정의당</SelectChip>
+          <SelectChip value="더불어민주당">
+            <Image
+              src={Party001}
+              alt="더불어민주당"
+              width={95}
+              height={48}
+            />
+          </SelectChip>
+          <SelectChip value="국민의힘">
+            <Image
+              src={Party002}
+              alt="국민의힘"
+              width={135}
+              height={32}
+            />
+          </SelectChip>
+          <SelectChip value="녹색정의당">
+            <Image
+              src={Party003}
+              alt="녹색정의당"
+              width={175}
+              height={28}
+            />
+          </SelectChip>
+          <SelectChip value="개혁신당">
+            <Image
+              src={Party004}
+              alt="개혁신당"
+              width={122}
+              height={48}
+            />
+          </SelectChip>
         </SelectChipContainer>
 
         <Link
           href="/select/confirm"
           passHref
         >
-          <CTAButton>
-            다음
+          <CTAButton
+            disabled={!selectedParty}
+          >
+            {selectedParty ? "선택 완료" : "정당을 선택해주세요"}
           </CTAButton>
         </Link>
       </Content>

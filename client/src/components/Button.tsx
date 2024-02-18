@@ -43,14 +43,21 @@ const StyledButton = styled.button`
   &:active {
     background: linear-gradient(180deg, #616161 0%, #303030 100%);
   }
+
+  &:disabled {
+    background: #BDBDBD;
+    color: #7C7C7C;
+    border: 1px solid #BDBDBD;
+    box-shadow: none;
+  }
 `;
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   className?: string;
   children: React.ReactNode;
 }
-const Button: React.FC<ButtonProps> = ({ className, children }) => {
-  return <StyledButton className={className}>{children}</StyledButton>;
+const Button: React.FC<ButtonProps> = ({ className, children, ...rest }) => {
+  return <StyledButton className={className} {...rest}>{children}</StyledButton>;
 };
 
 export default Button;

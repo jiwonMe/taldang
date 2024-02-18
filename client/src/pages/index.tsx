@@ -3,15 +3,19 @@ import Image from "next/image";
 import styled from "styled-components";
 import Logo from "@/assets/taldang-logo.svg";
 import TaldangDocument from "@/assets/document.png";
-import VSpace from "@/components/VSpace";
 import Button from "@/components/Button";
 import Layout from "@/components/Layout";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Background from "@/components/Background";
 import Content from "@/components/Content";
+import StatusBar from "@/components/StatusBar";
+import getPartyColor from "@/utils/getPartyColor";
+import { useStore } from "@/store";
 
 export default function Home() {
+  const { selectedParty } = useStore();
+
   return (
     <Animation
       initial={{ opacity: 0 }}

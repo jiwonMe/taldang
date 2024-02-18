@@ -65,6 +65,7 @@ const SelectChipLayout = styled.div<{
   background-color: #fff;
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
 
   align-items: center;
   justify-content: center;
@@ -75,7 +76,8 @@ const SelectChipLayout = styled.div<{
   border-radius: 8px;
 
   cursor: pointer;
-  height: 90px;
+  min-height: 70px;
+  /* height: auto; */
 
   opacity: ${(props) => (props.selected ? 1 : 0.4)};
 `;
