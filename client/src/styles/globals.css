@@ -8,7 +8,11 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #E9E9E9;
+  background-color: #d9d9d9;
+
+  /* disable iOS select */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 a {

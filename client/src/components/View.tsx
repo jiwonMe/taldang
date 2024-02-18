@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const View = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh; // 전체 높이를 차지하도록 설정
-  width: 100vw; // 전체 너비를 차지하도록 설정
+  height: 100dvh; // 전체 높이를 차지하도록 설정
+  width: 100dvw; // 전체 너비를 차지하도록 설정
 `;
 
 export default View;

@@ -7,10 +7,13 @@ import Logo from "@/assets/taldang-logo.svg";
 import TaldangDocument from "@/assets/document.png";
 import VSpace from "@/components/VSpace";
 import Button from "@/components/Button";
+import Layout from "@/components/Layout";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Taldang</title>
         <meta name="description" content="지금 떠나자, 탈당" />
@@ -21,30 +24,43 @@ export default function Home() {
         <div className="foreground" />
         <LimitedView>
           <Background>
-            <ImageAnimation
-              src={TaldangDocument}
-              alt="탈당"
-              width={255}
-              height={360}
-            />
-            <ImageAnimation
-              src={TaldangDocument}
-              alt="탈당"
-              width={255}
-              height={360}
-            />
-            <ImageAnimation
-              src={TaldangDocument}
-              alt="탈당"
-              width={255}
-              height={360}
-            />
-            <ImageAnimation
-              src={TaldangDocument}
-              alt="탈당"
-              width={255}
-              height={360}
-            />
+            <motion.div
+              // floating animation
+              initial={{ y: 0 }}
+              animate={{ y: 20 }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 2,
+                ease: "easeInOut",
+              }}
+            >
+              <ImageAnimation
+                src={TaldangDocument}
+                alt="탈당"
+                width={255}
+                height={360}
+              />
+              <ImageAnimation
+                src={TaldangDocument}
+                alt="탈당"
+                width={255}
+                height={360}
+              />
+              <ImageAnimation
+                src={TaldangDocument}
+                alt="탈당"
+                width={255}
+                height={360}
+              />
+              <ImageAnimation
+                src={TaldangDocument}
+                alt="탈당"
+                width={255}
+                height={360}
+              />
+            </motion.div>
+            <TopGradient />
           </Background>
           <Content>
             <VSpace height={250} />
@@ -59,11 +75,15 @@ export default function Home() {
             </LogoWithSlogan>
             <VSpace height={250} />
             {/* <FakeLoadingBar duration={3} /> */}
-            <CTAButton>탈당하기</CTAButton>
+            <Link
+              href={"/intro"}
+            >
+              <CTAButton>탈당하기</CTAButton>
+            </Link>
           </Content>
         </LimitedView>
       </main>
-    </>
+    </Layout>
   );
 }
 
@@ -78,7 +98,8 @@ const CTAButton = styled(Button)`
 
 // View 컴포넌트를 확장하여 최대 너비를 설정합니다.
 const LimitedView = styled(View)`
-  max-width: 768px;
+  position: relative;
+
   margin: 0 auto; // 중앙 정렬
 
   overflow: hidden;
@@ -86,6 +107,26 @@ const LimitedView = styled(View)`
   align-items: center;
 
   background-color: #E9E9E9;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 400px;
+  }
+`;
+
+const TopGradient = styled.div`
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  height: 400px;
+
+  z-index: 0;
+
+  background: linear-gradient(180deg, #A2A2A299 0%, #A2A2A200 75%);
 `;
 
 const LogoWithSlogan = styled.div`
