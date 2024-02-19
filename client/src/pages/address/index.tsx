@@ -8,8 +8,11 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import DaumPostcode, { Address } from 'react-daum-postcode';
 import { useStore } from '@/store';
+import { useRouter } from 'next/router';
 
 export default function Address() {
+  const router = useRouter();
+
   const {
     address,
     setAddress,
@@ -83,6 +86,7 @@ export default function Address() {
             () => {
               alert("주소 입력이 완료되었습니다.");
               console.log(address, detail)
+              router.push("/signature");
             }
           }
           disabled={

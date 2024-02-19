@@ -12,6 +12,7 @@ import Party001 from "@/assets/party_001.png";
 import Party002 from "@/assets/party_002.png";
 import Party003 from "@/assets/party_003.png";
 import Party004 from "@/assets/party_004.png";
+import Party005 from "@/assets/party_005.png";
 
 import Image from "next/image";
 import { useStore } from "@/store";
@@ -75,6 +76,17 @@ export default function Select() {
               width={122}
               height={48}
             />
+          </SelectChip>
+          <SelectChip value="새로운미래">
+            <Image
+                src={Party005}
+                alt="새로운미래"
+                width={164}
+                height={32}
+              />
+          </SelectChip>
+          <SelectChip value="조국신당">
+            <h2>조국신당</h2>
           </SelectChip>
         </SelectChipContainer>
 
