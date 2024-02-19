@@ -26,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <Head>
         <meta name="theme-color" content={selectedParty ? getPartyColor(selectedParty) : "#c1c1c1"} />
+        <meta name="naver-site-verification" content="9f41a2a9e3d1c3efe8a85c44d7106cdfc606d21d" />
       </Head>
       <LimitedView>
         <TestMessage>
