@@ -13,13 +13,13 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { selectedParty, setSelectedParty} = useStore();
+  const { selectedParty, setSelectedParty, resetAll} = useStore();
   const router = useRouter();
 
   const navigateToMain = useCallback(() => {
-    setSelectedParty("");
+    resetAll();
     router.push("/");
-  }, [setSelectedParty, router])
+  }, [router, resetAll])
   
   return (
     <>

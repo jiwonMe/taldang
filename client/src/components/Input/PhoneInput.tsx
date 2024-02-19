@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 interface PhoneInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
+  ref?: React.Ref<HTMLInputElement>
 }
 
 const PhoneInput: React.FC<PhoneInputProps> = (props) => {
@@ -24,6 +25,9 @@ const PhoneInput: React.FC<PhoneInputProps> = (props) => {
     const formatted = formatPhoneNumber(e.target.value)
     if (formatted.length <= 13) {
       setValue(formatted)
+    }
+    if (props.onChange) {
+      props.onChange(e)
     }
   }
 

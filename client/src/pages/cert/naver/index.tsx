@@ -7,6 +7,7 @@ import styled from "styled-components";
 import NaverCertImageSrc from "@/assets/navercert.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function NaverCert() {
   const [certStatus, setCertStatus] = useState<"idle" | "pending" | "success" | "failure">("pending");
@@ -18,6 +19,8 @@ export default function NaverCert() {
       }, 3000);
     }
   }, [certStatus])
+
+  const router = useRouter();
 
   return (
     <Animation
@@ -47,6 +50,7 @@ export default function NaverCert() {
           onClick={() => {
             if (certStatus === "success") {
               alert("인증이 완료되었습니다.");
+              router.push("/address");
             } else {
               setCertStatus("pending");
               setTimeout(() => {

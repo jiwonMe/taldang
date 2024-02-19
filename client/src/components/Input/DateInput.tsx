@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 interface DateInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
+  ref?: React.Ref<HTMLInputElement>
 }
 
 const DateInput: React.FC<DateInputProps> = (props) => {
@@ -24,6 +25,9 @@ const DateInput: React.FC<DateInputProps> = (props) => {
     const formatted = formatDate(e.target.value)
     if (formatted.length <= 11) {
       setValue(formatted)
+    }
+    if (props.onChange) {
+      props.onChange(e)
     }
   }
 
