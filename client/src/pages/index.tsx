@@ -87,7 +87,7 @@ export default function Home() {
             width={230}
             height={32}
           />
-          <p>당적을 포기할 권리: 탈당</p>
+          <p>우리는 동의하지 않습니다</p>
         </LogoWithSlogan>
         <Link
           href={"/intro"}

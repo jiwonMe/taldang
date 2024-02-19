@@ -7,6 +7,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import styled from "styled-components";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -27,6 +28,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="theme-color" content={selectedParty ? getPartyColor(selectedParty) : "#c1c1c1"} />
       </Head>
       <LimitedView>
+        <TestMessage>
+          <span>현재 이 웹사이트는 테스트용으로 제작되었습니다. 실제 탈당은 불가능합니다.</span>
+        </TestMessage>
         <StatusBar
           backgroundColor={getPartyColor(selectedParty)}
         >
@@ -53,3 +57,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   )
 };
 export default Layout;
+
+const TestMessage = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  a {
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  z-index: 10000;
+`;
