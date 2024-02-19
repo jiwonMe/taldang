@@ -23,17 +23,17 @@ export default function Home() {
       }}  
     >
       <Head>
-        <title>Taldang</title>
+        <title>탈당(TALDANG)</title>
         <meta name="description" content="탈당: 우리는 동의하지 않습니다" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="탈당" />
+        <meta property="og:title" content="탈당(TALDANG)" />
         <meta property="og:description" content="탈당: 우리는 동의하지 않습니다" />
         <meta property="og:image" content="/thumbnail.png" />
         <meta property="og:url" content="https://taldang.com" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="탈당" />
-        <meta name="twitter:description" content="탈당: 우리는 동의하지 않습니다" />
-        <meta name="twitter:image" content="/thumbnail.png" />
+        <meta name="x:card" content="summary_large_image" />
+        <meta name="x:title" content="탈당" />
+        <meta name="x:description" content="탈당: 우리는 동의하지 않습니다" />
+        <meta name="x:image" content="/thumbnail.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Background>
