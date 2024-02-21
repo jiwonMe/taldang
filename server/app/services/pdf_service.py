@@ -1,7 +1,9 @@
 from PIL import ImageDraw, ImageFont
 from pdf2image import convert_from_path
 from ftplib import FTP
+from app.constants.barobil_const import BAROBILL_FTP_HOST, BAROBILL_FTP_PASSWORD, BAROBILL_FTP_USER
 from app.utils import get_now_datetime, upload_file_to_ftp
+import os
 
 def annotate_pdf(name, gender, birth_date, address, phone):
     # load pdf
@@ -40,6 +42,9 @@ def annotate_pdf(name, gender, birth_date, address, phone):
         draw.text((575, 1116), f'{name}', fill='black', font=font)
 
         # save image
+        # tmp directory
+        if not os.path.exists('dist'):
+            os.makedirs('dist')
         image_path = f'./dist/output_image{i}.png'
         image.save(image_path)
 
@@ -50,5 +55,4 @@ def annotate_pdf(name, gender, birth_date, address, phone):
 
     return {
         "message": "PDF에 텍스트가 추가되었습니다.",
-        "sendKey": sendKey,
     }
