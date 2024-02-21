@@ -1,3 +1,5 @@
 .venv/
 .env
 dist/
+*.pem
+.env*
