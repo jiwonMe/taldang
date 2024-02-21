@@ -37,7 +37,7 @@ export default function Select() {
       <Content>
         <PageTitle
           title="떠나고 싶은 정당을 선택해주세요"
-          subtitle="정당의 순서는 중앙선거관리위원회의 보고 순서를 따랐습니다."
+          subtitle="정당의 순서는 제20대 국회 의석수를 기준으로 하였습니다."
         />
 
         <SelectChipContainer
@@ -85,13 +85,16 @@ export default function Select() {
                 height={32}
               />
           </SelectChip>
-          <SelectChip value="조국신당">
-            <h2>조국신당</h2>
-          </SelectChip>
         </SelectChipContainer>
-
+        <Description>
+        원내정당 중 진보당, 새진보연합은 주민등록번호를 요구하거나 탈당신고서를 제공하지 않아 본 서비스에서 제외되었습니다.
+        </Description>
         <Link
-          href="/cert"
+          href={
+            selectedParty === "더불어민주당" ? 
+            "/redirect?url=https://membership.theminjoo.kr/exit/agreeToTerms" :
+            "/cert"
+          }
         >
           <CTAButton
             disabled={!selectedParty}
@@ -127,4 +130,15 @@ const CTAButton = styled(Button)`
   transform: translateX(-50%);
 
   max-width: 100%;
+`;
+
+const Description = styled.p`
+  margin-top: 8px;
+  font-size: 10px;
+  color: #616161;
+  line-height: 13px;
+
+  text-align: left;
+
+  word-break: keep-all;
 `;
