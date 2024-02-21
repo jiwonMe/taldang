@@ -53,6 +53,5 @@ def annotate_pdf(name, gender, birth_date, address, phone):
     # close ftp
     ftp.quit()
 
-    return {
-        "message": "PDF에 텍스트가 추가되었습니다.",
-    }
+    # return image as response
+    return image_path

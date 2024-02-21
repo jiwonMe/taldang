@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Body
+from fastapi.responses import FileResponse
 from app.services.pdf_service import annotate_pdf
 
 router = APIRouter()
@@ -11,4 +12,5 @@ def annotate_pdf_route(
     address: str = Body(...),
     phone: str = Body(...),
 ):
-    return annotate_pdf(name, gender, birth_date, address, phone)
+  image_path = annotate_pdf(name, gender, birth_date, address, phone)
+  return FileResponse(image_path, media_type='image/png')
