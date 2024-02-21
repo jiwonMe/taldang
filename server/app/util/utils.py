@@ -1,7 +1,16 @@
+import datetime
 from ftplib import FTP
 from zeep import Client
 
 from app.config import BAROBILL_CERTKEY, BAROBILL_CORPNUM, BAROBILL_ID, TEST_FROM_NUMBER, TEST_TO_NUMBER 
+
+def get_now_datetime():
+    now = datetime.now()
+    return {
+        "year": now.year,
+        "month": now.month,
+        "day": now.day,
+    }
 
 def upload_file_to_ftp(file: str, ftp: FTP, remote_path: str):
     with open(file, 'rb') as f:

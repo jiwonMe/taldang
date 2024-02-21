@@ -12,3 +12,8 @@ pip install -r requirements.txt
 ```bash
 uvicorn main:app --reload
 ```
+
+## create docs
+```bash
+openapi-generator generate -i ./docs/openapi.yml -g html -o ./docs
+```

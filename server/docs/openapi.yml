@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: Barobill Fax API
+  version: 1.0.0
+paths:
+  /sendFax:
+    post:
+      summary: Send a fax
+      operationId: sendFax
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fileName:
+                  type: string
+      responses:
+        '200':
+          description: Fax sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
