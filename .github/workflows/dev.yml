@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Copy files to EC2 instance with pem file with aws cli
+    - name: Copy files to EC2
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
@@ -30,6 +30,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd /home/ubuntu/action_${{ github.sha }}/server
+          echo "${{ secrets.ENV_FILE }}" > .env # Create .env file
           if [ "$(docker ps -qa)" ]; then
             docker rm -f $(docker ps -qa)
           fi
@@ -43,10 +44,7 @@ jobs:
           else
             echo "Dockerfile does not exist in the current directory."
           fi
-  cleanup:
-    runs-on: ubuntu-latest
-    environment: Development
-    steps:
+
     - name: Clean up
       uses: appleboy/ssh-action@v1.0.3
       with:
