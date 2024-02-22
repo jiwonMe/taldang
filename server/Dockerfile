@@ -4,6 +4,10 @@ FROM python:3.8
 # 작업 디렉토리를 설정합니다.
 WORKDIR /app
 
+# use venv
+RUN python3 -m venv env
+RUN source env/bin/activate
+
 RUN pip install --upgrade pip
 
 # 필요한 패키지를 설치합니다.
