@@ -20,6 +20,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         source: "./server"
         target: "/home/ubuntu/server"
+        overwrite: true
 
     - name: EC2 Docker Run
       uses: appleboy/ssh-action@v1.0.3
@@ -30,6 +31,6 @@ jobs:
         script: |
           docker rm -f $(docker ps -qa)
           docker rmi -f $(docker images -qa)
-          docker build server -t server --no-cache
+          docker build --no-cache server -t server
           docker run -d -p 80:80 --name server server
 

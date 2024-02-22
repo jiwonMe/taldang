@@ -4,10 +4,6 @@ FROM python:3.8
 # 작업 디렉토리를 설정합니다.
 WORKDIR /app
 
-# use venv
-RUN python3 -m venv env
-RUN source env/bin/activate
-
 RUN pip install --upgrade pip
 
 # 무작위 문자열을 추가하여 캐시를 무효화합니다.
