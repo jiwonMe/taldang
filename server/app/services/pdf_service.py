@@ -24,7 +24,9 @@ def annotate_pdf(name, gender, birth_date, address, phone):
 
         # add text to image
         draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype('assets/Maruburi-Regular.ttf', 20)
+        font_path = os.path.join(os.path.dirname(__file__), '../../assets/MaruBuri-Regular.ttf')
+        print(font_path)
+        font = ImageFont.truetype(font_path, 20)
 
         draw.text((277, 300), f'{name}', fill='black', font=font)
         draw.text((277, 378), f'{gender}', fill='black', font=font)

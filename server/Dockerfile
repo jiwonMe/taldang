@@ -4,6 +4,8 @@ FROM python:3.8
 # 작업 디렉토리를 설정합니다.
 WORKDIR /app
 
+RUN pip install --upgrade pip
+
 # 필요한 패키지를 설치합니다.
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
@@ -13,6 +15,9 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     zlib1g-dev \
     libpng-dev
+
+# poppler
+RUN apt-get install -y poppler-utils
 
 #uvicorn을 설치합니다.
 RUN pip install uvicorn
