@@ -30,6 +30,6 @@ jobs:
         script: |
           docker rm -f $(docker ps -qa)
           docker rmi -f $(docker images -qa)
-          docker build server -t server
+          docker build server -t server --no-cache
           docker run -d -p 80:80 --name server server
 
