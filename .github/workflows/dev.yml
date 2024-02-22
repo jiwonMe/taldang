@@ -39,11 +39,14 @@ jobs:
           image_name=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 32 | head -n 1)
           if [ -f Dockerfile ]; then
             docker build --no-cache . -t $image_name
-            docker run -d -p 80:80 --name . $image_name
+            docker run -d -p 80:80 --name server $image_name
           else
             echo "Dockerfile does not exist in the current directory."
           fi
-
+  cleanup:
+    runs-on: ubuntu-latest
+    environment: Development
+    steps:
     - name: Clean up
       uses: appleboy/ssh-action@v1.0.3
       with:
