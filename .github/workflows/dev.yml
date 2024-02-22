@@ -19,7 +19,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         source: "./server"
-        target: "/home/ubuntu/server_${{ github.sha }}"
+        target: "/home/ubuntu/action_${{ github.sha }}"
         overwrite: true
 
     - name: EC2 Docker Run
@@ -29,7 +29,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd /home/ubuntu/server_${{ github.sha }}
+          cd /home/ubuntu/action_${{ github.sha }}/server
           if [ "$(docker ps -qa)" ]; then
             docker rm -f $(docker ps -qa)
           fi
@@ -51,5 +51,5 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          rm -rf /home/ubuntu/server_${{ github.sha }}
+          rm -rf /home/ubuntu/action_${{ github.sha }}
 
