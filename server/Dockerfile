@@ -10,6 +10,9 @@ RUN source env/bin/activate
 
 RUN pip install --upgrade pip
 
+# 무작위 문자열을 추가하여 캐시를 무효화합니다.
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+
 # 필요한 패키지를 설치합니다.
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
