@@ -35,5 +35,13 @@ jobs:
           image_name=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 32 | head -n 1)
           docker build --no-cache . -t $image_name
           docker run -d -p 80:80 --name . $image_name
+
+    - name: Clean up
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
           rm -rf /home/ubuntu/server_${{ github.sha }}
 
