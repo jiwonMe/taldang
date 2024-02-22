@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Development
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -31,3 +32,4 @@ jobs:
           docker rmi -f $(docker images -qa)
           docker build server -t server
           docker run -d -p 80:80 --name server server
+
