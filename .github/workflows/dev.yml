@@ -19,7 +19,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         source: "./server"
-        target: "/home/ubuntu/server"
+        target: "/home/ubuntu/server_${{ github.head_ref }}"
         overwrite: true
 
     - name: EC2 Docker Run
@@ -31,7 +31,7 @@ jobs:
         script: |
           docker rm -f $(docker ps -qa)
           docker rmi -f $(docker images -qa)
-          IMAGE_NAME=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
-          docker build --no-cache server -t $IMAGE_NAME
-          docker run -d -p 80:80 --name server $IMAGE_NAME
+          image_name=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 32 | head -n 1)
+          docker build --no-cache server_${{ github.head_ref }} -t $image_name
+          docker run -d -p 80:80 --name server_${{ github.head_ref }} $image_name
 
