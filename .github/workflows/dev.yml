@@ -30,11 +30,19 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd /home/ubuntu/server_${{ github.sha }}
-          docker rm -f $(docker ps -qa)
-          docker rmi -f $(docker images -qa)
+          if [ "$(docker ps -qa)" ]; then
+            docker rm -f $(docker ps -qa)
+          fi
+          if [ "$(docker images -q)" ]; then
+            docker rmi -f $(docker images -q)
+          fi
           image_name=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 32 | head -n 1)
-          docker build --no-cache . -t $image_name
-          docker run -d -p 80:80 --name . $image_name
+          if [ -f Dockerfile ]; then
+            docker build --no-cache . -t $image_name
+            docker run -d -p 80:80 --name . $image_name
+          else
+            echo "Dockerfile does not exist in the current directory."
+          fi
 
     - name: Clean up
       uses: appleboy/ssh-action@v1.0.3
