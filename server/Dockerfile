@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libpng-dev
 
+#uvicorn을 설치합니다.
+RUN pip install uvicorn
+
 # 애플리케이션 코드를 Docker 컨테이너에 복사합니다.
 COPY . .
 
 # 애플리케이션을 실행할 명령을 지정합니다.
-CMD [ "python", "./app/main.py" ]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
