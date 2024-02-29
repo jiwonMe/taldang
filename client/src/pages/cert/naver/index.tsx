@@ -114,5 +114,5 @@ const Animation = styled(motion.div)`
   width: 100%;
   overflow: hidden;
 
-  padding: 110px 36px 0 36px;
+  padding: 60px 36px 0 36px;
 `;

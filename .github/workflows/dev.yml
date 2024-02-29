@@ -1,0 +1,56 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Development
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Copy files to EC2
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        source: "./server"
+        target: "/home/ubuntu/action_${{ github.sha }}"
+        overwrite: true
+
+    - name: EC2 Docker Run
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/ubuntu/action_${{ github.sha }}/server
+          echo "${{ secrets.ENV_FILE }}" > .env # Create .env file
+          if [ "$(docker ps -qa)" ]; then
+            docker rm -f $(docker ps -qa)
+          fi
+          if [ "$(docker images -q)" ]; then
+            docker rmi -f $(docker images -q)
+          fi
+          image_name=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 32 | head -n 1)
+          if [ -f Dockerfile ]; then
+            docker build --no-cache . -t $image_name
+            docker run -d -p 80:80 --name server $image_name
+          else
+            echo "Dockerfile does not exist in the current directory."
+          fi
+
+    - name: Clean up
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          rm -rf /home/ubuntu/action_${{ github.sha }}
+

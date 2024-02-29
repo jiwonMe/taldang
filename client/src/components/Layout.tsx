@@ -11,9 +11,10 @@ import styled from "styled-components";
 
 interface LayoutProps {
   children: React.ReactNode;
+  finish?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, finish }) => {
   const { selectedParty, setSelectedParty, resetAll} = useStore();
   const router = useRouter();
 
@@ -34,9 +35,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <span>현재 이 웹사이트는 테스트용으로 제작되었습니다. 실제 탈당은 불가능합니다.</span>
         </TestMessage>
         <StatusBar
-          backgroundColor={getPartyColor(selectedParty)}
+          backgroundColor={finish ? "#000000" : getPartyColor(selectedParty)}
         >
-          {selectedParty ? (
+          {
+            finish ? (
+              <span>
+                <b>{selectedParty}</b>을(를) 떠났습니다
+              </span>
+            ) : 
+          (selectedParty ? (
             <>
               <span>
                 <b>{selectedParty}</b>을(를) 떠나는 중
@@ -48,7 +55,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 중단하기
               </a>
             </>
-          ) : null}
+          ) : null)
+}
         </StatusBar>
         <AnimatePresence mode="wait" initial={true}
         >

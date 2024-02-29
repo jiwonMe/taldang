@@ -5,6 +5,7 @@ import SignatureInput from "@/components/Input/SignatureInput";
 import Layout from "@/components/Layout"
 import PageTitle from "@/components/PageTitle";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import styled from "styled-components";
 
 export default function Signature() {
@@ -25,7 +26,9 @@ export default function Signature() {
           subtitle="서명을 입력해주세요"
         />
         <SignatureInput />
-        <CTAButton>서명 완료</CTAButton>
+        <Link href="/confirm">
+          <CTAButton>서명 완료</CTAButton>
+        </Link>
       </Content>
     </Animation>
   );
@@ -44,7 +47,7 @@ const Animation = styled(motion.div)`
   width: 100%;
   overflow: hidden;
 
-  padding: 110px 36px 0 36px;
+  padding: 60px 36px 0 36px;
 `;
 
 const CTAButton = styled(Button)`

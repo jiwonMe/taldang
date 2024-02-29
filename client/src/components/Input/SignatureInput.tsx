@@ -1,7 +1,6 @@
 import React from 'react'
 import SignatureCanvas from 'react-signature-canvas'
 import styled from 'styled-components'
-import Button from '../Button'
 
 const SignatureInput = () => {
   const sigCanvas = React.useRef<SignatureCanvas>(null)
@@ -26,7 +25,7 @@ const SignatureInput = () => {
         }}
         clearOnResize={false}
       />
-      <a onClick={clear}>지우기</a>
+      <A onClick={clear}>지우기</A>
     </>
   )
 }
@@ -34,4 +33,21 @@ const SignatureInput = () => {
 export default SignatureInput
 
 const SignaturePad = styled(SignatureCanvas)`
+`;
+
+const A = styled.a`
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+  font-size: 12px;
+  color: #676767;
+  cursor: pointer;
+  text-decoration: underline;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 10px;
+  box-sizing: border-box;
 `;
