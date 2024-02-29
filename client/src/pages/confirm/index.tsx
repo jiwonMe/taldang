@@ -7,6 +7,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import DocumentImageSrc from '@/assets/document.png';
+import Link from 'next/link';
 
 export default function Confirm() {
   return (
@@ -26,7 +27,9 @@ export default function Confirm() {
           <A>이미지로 다운로드</A>
         </DocumentImageBox>
         <ButtonContainer>
-          <Button>팩스로 제출</Button>
+          <Link href="/finish">
+            <Button>팩스로 제출</Button>
+          </Link>
         </ButtonContainer>
       </Content>
     </Animation>
