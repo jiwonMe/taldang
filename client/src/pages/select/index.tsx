@@ -77,17 +77,17 @@ export default function Select() {
               height={48}
             />
           </SelectChip>
-          <SelectChip value="새로운미래">
+          {/* <SelectChip value="새로운미래">
             <Image
                 src={Party005}
                 alt="새로운미래"
                 width={164}
                 height={32}
               />
-          </SelectChip>
+          </SelectChip> */}
         </SelectChipContainer>
         <Description>
-        원내정당 중 진보당, 새진보연합은 주민등록번호를 요구하거나 탈당신고서를 제공하지 않아 본 서비스에서 제외되었습니다.
+        원내정당 중 새로운미래, 진보당, 새진보연합은 주민등록번호를 요구하거나, 탈당신고서를 제공하지 않아 본 서비스에서 제외되었습니다.
         </Description>
         <Link
           href={
@@ -120,7 +120,7 @@ const Animation = styled(motion.div)`
   width: 100%;
   overflow: hidden;
 
-  padding: 110px 36px 0 36px;
+  padding: 60px 36px 0 36px;
 `;
 
 const CTAButton = styled(Button)`
